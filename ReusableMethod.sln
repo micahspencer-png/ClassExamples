@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReusableMethod", "ReusableMethod\ReusableMethod.csproj", "{50BCAEEE-04AF-4D8C-B21D-4926F8170D9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50BCAEEE-04AF-4D8C-B21D-4926F8170D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BCAEEE-04AF-4D8C-B21D-4926F8170D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BCAEEE-04AF-4D8C-B21D-4926F8170D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BCAEEE-04AF-4D8C-B21D-4926F8170D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03800A86-7BDC-4440-BA26-D1D0DA47D45F}
+	EndGlobalSection
+EndGlobal
