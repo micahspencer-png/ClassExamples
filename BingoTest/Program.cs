@@ -13,10 +13,16 @@
             //displays user interface
             string currentLocation = "XX";
             string[] header = { "B","I","N","G","O" };
-            Console.WriteLine(new string('-',25));
+            string vDivide = " |";
+            int pad = 3;
+            int totalWidth = 5 * (pad + vDivide.Length);
+            string hDivide = new string('-', totalWidth);
+            
+            Console.WriteLine(hDivide);
+           
             foreach (string letter in header)
             {
-                Console.Write(letter.PadLeft(3) + "  "); 
+                Console.Write(letter.PadLeft(pad) + vDivide); 
             }
             Console.WriteLine();
 
@@ -37,6 +43,9 @@
             bool[,] bingoCage = new bool[4,14];
             Random draw1 = new Random();
             Random draw2 = new Random();
+
+            int num1 = draw1.Next(0,5);
+            int num2 = draw2.Next(0,15);
 
         }
 
