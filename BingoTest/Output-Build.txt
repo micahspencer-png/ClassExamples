@@ -1,0 +1,7 @@
+﻿Build started at 8:24 AM...
+1>------ Build started: Project: BingoTest, Configuration: Debug Any CPU ------
+1>Skipping analyzers to speed up the build. You can execute 'Build' or 'Rebuild' command to run analyzers.
+1>CSC : error CS0016: Could not write to output file 'C:\Users\Micas\OneDrive\Documents\Git\ClassExamples\BingoTest\BingoTest\obj\Debug\net8.0\BingoTest.sourcelink.json' -- 'The process cannot access the file 'C:\Users\Micas\OneDrive\Documents\Git\ClassExamples\BingoTest\BingoTest\obj\Debug\net8.0\BingoTest.sourcelink.json' because it is being used by another process.'
+1>Done building project "BingoTest.csproj" -- FAILED.
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 8:24 AM and took 01.154 seconds ==========
