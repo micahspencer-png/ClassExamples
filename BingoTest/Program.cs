@@ -1,4 +1,5 @@
-﻿using System.Net.Quic;
+﻿using System.Data;
+using System.Net.Quic;
 
 namespace BingoTest
 {
@@ -15,12 +16,26 @@ namespace BingoTest
             {
                 int row = 0;
                 int column = 0;
+                
 
                 Draw(ref row, ref column);
                 IsDrawn(row, column);
                 Display();
-                Console.Read();
-            } while (quit = false);
+                Console.WriteLine("Press Any Key to Redraw. Press Q to Quit");
+                userInput = Console.ReadLine();
+                Console.Clear();
+
+                if (userInput == "q" || userInput == "Q") 
+                {
+                    quit = true;
+                }
+
+                else 
+                {
+                    quit = false;
+                }
+
+            } while (quit == false);
 
             Console.WriteLine("Press Enter to Quit");
             Console.Read();
@@ -48,35 +63,31 @@ namespace BingoTest
             {
                 for (int column = 0; column < 5; column++)
                 {
-                    if (IsDrawn(row,column))
+                    if (IsDrawn(row,column)==false)
                     {
-                        currentLocation = "00";
+                        currentLocation = ((column * 15) + row + 1).ToString();   
                     }
+
                     else 
                     {
-                        currentLocation = "XX";
+                        currentLocation = " ";
                     }
+                    
                         Console.Write(currentLocation.PadLeft(pad) + vDivide);
                 }
                 Console.WriteLine();
             }
         }
 
-        private static bool[,] ballCage= new bool[14, 4];
+        private static bool[,] ballCage= new bool[15, 5];
 
         static bool IsDrawn(int row, int column)
         {
             bool status = false;
 
-            try 
-            { 
-                status = ballCage[row, column];
-            }
-            catch (Exception)
-            {
-                
-            }
+            
             return status;
+            
         }
         static void Draw(ref int row, ref int column) 
         {
