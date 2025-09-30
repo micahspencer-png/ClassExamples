@@ -11,37 +11,43 @@ namespace BingoTest
             string userInput;
             Console.WriteLine("Press enter to draw ball. Type Q to quit.");
             userInput = Console.ReadLine();
-            
-            do
+
+            if (userInput == "q" || userInput == "Q")
             {
-                int row = 0;
-                int column = 0;
-                
 
-                Draw(ref row, ref column);
-                IsDrawn(row, column);
-                Display();
-                Console.WriteLine("Press Any Key to Redraw. Press Q to Quit");
-                userInput = Console.ReadLine();
-                Console.Clear();
-
-                if (userInput == "q" || userInput == "Q") 
+            }
+            else
+            {
+                do
                 {
-                    quit = true;
-                }
+                    Console.Clear();
+                    
+                    int row = 0;
+                    int column = 0;
 
-                else 
-                {
-                    quit = false;
-                }
+                    Draw(ref row, ref column);
+                    IsDrawn(row, column);
+                    Display(row, column);
+                    Console.WriteLine("Press Enter to Redraw. Press Q to Quit");
+                    userInput = Console.ReadLine();
 
-            } while (quit == false);
+                    if (userInput == "q" || userInput == "Q")
+                    {
+                        quit = true;
+                    }
 
+                    else
+                    {
+                        quit = false;
+                    }
+
+                } while (quit == false);
+            }
             Console.WriteLine("Press Enter to Quit");
             Console.Read();
         }
 
-        static void Display() 
+        static void Display(int row1, int column1) 
         {
             //displays user interface
             string currentLocation = "XX";
@@ -63,7 +69,7 @@ namespace BingoTest
             {
                 for (int column = 0; column < 5; column++)
                 {
-                    if (IsDrawn(row,column)==false)
+                    if (IsDrawn(row,column))
                     {
                         currentLocation = ((column * 15) + row + 1).ToString();   
                     }
@@ -85,24 +91,36 @@ namespace BingoTest
         {
             bool status = false;
 
+            try 
+            {
+                status = ballCage[row, column];
+            }
+            catch 
+            {
             
+            }
             return status;
             
         }
         static void Draw(ref int row, ref int column) 
         {
-            //draws random number
-            Random draw1 = new Random();
-            Random draw2 = new Random();
 
-            row = draw1.Next(0,15);
-            column = draw2.Next(0,5);
+            //loops random draw if the ball was already drawn
+            do
+            {
+                //draws random number
+                Random draw1 = new Random();
+                Random draw2 = new Random();
+
+                //sets random number as coordinates of array
+                row = draw1.Next(0, 15);
+                column = draw2.Next(0, 5);
+
+            } while (ballCage[row, column] == true);
+            
+            //sets location as true
+            ballCage[row, column] = true;
         }
 
-        static void Check() 
-        {
-            //checks if number is available
-
-        }
     }
 }
