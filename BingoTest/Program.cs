@@ -17,6 +17,7 @@ namespace BingoTest
             {
 
             }
+
             else
             {
                 do
@@ -26,15 +27,15 @@ namespace BingoTest
                     string location = "";
                     int row = 0;
                     int column = 0;
-
                     
-                    count++;
+
                     if (count < 76)
-                    { 
-                        Draw(ref row, ref column);    
+                    {
+                        Draw(ref row, ref column);
+                        count++;
                     }
 
-                    else 
+                    else
                     {
                         Console.WriteLine("Press C to Start New Game.");
                     }
@@ -52,18 +53,36 @@ namespace BingoTest
                         quit = true;
                     }
 
-                    else if(userInput == "c" || userInput == "C")
+                    else if (userInput == "c" || userInput == "C")
                     {
-                        
+                        NewGame();
+                        count = 0;
                     }
+                    
                     else
                     {
                         quit = false;
                     }
 
+                    if (quit)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Are You Sure You Want to Quit? y/n");
+                        userInput = Console.ReadLine();
+                           
+                        if (userInput == "n" || userInput == "N")
+                        {
+                            quit = false;
+                            Console.Clear();
+                            Display(row, column, ref location);   
+                        }
+                    }
+
                 } while (quit == false);
             }
+
             Console.Clear();
+            Console.WriteLine("Have a Nice Day");
             Console.WriteLine("Press Enter to Quit");
             Console.Read();
         }
@@ -143,6 +162,13 @@ namespace BingoTest
             
             //sets location as true
             ballCage[row, column] = true;
+        }
+
+        static void NewGame()
+        {
+            bool[,] empty = new bool[15, 5];
+            ballCage = empty;
+            
         }
 
     }
