@@ -53,6 +53,7 @@
             string path = "..\\..\\..\\email.txt";
             string customer = "";
             string[] temp;
+            string formatRecord;
 
             using (StreamReader testFile = new StreamReader(path))
             {
@@ -60,9 +61,12 @@
                 {
                     customer = testFile.ReadLine();
                     temp = customer.Split(",");
-                    foreach (var record in temp)
+                    foreach (string record in temp)
                     {
-                        Console.Write(record.PadRight(15));
+                        formatRecord = record.Replace("$$", "");
+                        formatRecord = formatRecord.Replace('"', ' ');
+                        formatRecord = formatRecord.Trim();
+                        Console.Write(formatRecord.PadRight(15));
                     }
                     Console.WriteLine();
 
