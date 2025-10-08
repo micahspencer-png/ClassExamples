@@ -57,27 +57,23 @@
 
             using (StreamReader testFile = new StreamReader(path))
             {
-                try
-                {
+          
                     do
                     {
                         customer = testFile.ReadLine();
                         temp = customer.Split(",");
+                        //Console.Write($"Length : {temp.Length}".PadRight(15)))
                         foreach (string record in temp)
                         {
                             formatRecord = record.Replace('"', '$');
-                            formatRecord = formatRecord.Replace(" ", "$");
                             formatRecord = formatRecord.Replace("$","");
                             Console.Write(formatRecord.PadRight(15));
                         }
                         Console.WriteLine();
 
                     } while (testFile.EndOfStream == false);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("out of bounds");
-                }
+                
+                
             }
 
             //ReadFile(path);
