@@ -33,6 +33,9 @@
             //all indexes below shift down
             names.RemoveAt(3);
 
+            //sorts by value
+            names.Sort();
+
             //writes all data and their indexes
             foreach (string name in names)
             {
