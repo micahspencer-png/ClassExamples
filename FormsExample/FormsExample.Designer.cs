@@ -103,7 +103,6 @@ namespace FormsExample
             LastNamelabel.Size = new Size(79, 20);
             LastNamelabel.TabIndex = 1;
             LastNamelabel.Text = "Last Name";
-            LastNamelabel.Click += label1_Click;
             // 
             // LastNametextbox
             // 
