@@ -182,6 +182,7 @@ namespace FormsExample
             // 
             // DisplayLabel
             // 
+            DisplayLabel.BorderStyle = BorderStyle.FixedSingle;
             DisplayLabel.Font = new Font("Times New Roman", 20F);
             DisplayLabel.Location = new Point(319, 44);
             DisplayLabel.Name = "DisplayLabel";
