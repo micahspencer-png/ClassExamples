@@ -31,6 +31,7 @@ namespace FormsExample
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DisplayButton = new Button();
             ExitButton = new Button();
             ClearButton = new Button();
@@ -47,6 +48,7 @@ namespace FormsExample
             zipcodelabel = new Label();
             Zipcodetextbox = new TextBox();
             DisplayLabel = new Label();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // DisplayButton
@@ -56,6 +58,7 @@ namespace FormsExample
             DisplayButton.Size = new Size(137, 66);
             DisplayButton.TabIndex = 0;
             DisplayButton.Text = "&Display Label";
+            toolTip.SetToolTip(DisplayButton, "Displays Data from User");
             DisplayButton.UseVisualStyleBackColor = true;
             DisplayButton.Click += DisplayButton_Click;
             // 
@@ -66,6 +69,7 @@ namespace FormsExample
             ExitButton.Size = new Size(137, 66);
             ExitButton.TabIndex = 0;
             ExitButton.Text = "E&xit";
+            toolTip.SetToolTip(ExitButton, "Closes the Program");
             ExitButton.UseVisualStyleBackColor = true;
             ExitButton.Click += ExitButton_Click;
             // 
@@ -76,6 +80,7 @@ namespace FormsExample
             ClearButton.Size = new Size(137, 66);
             ClearButton.TabIndex = 0;
             ClearButton.Text = "&Clear";
+            toolTip.SetToolTip(ClearButton, "Clears the Current Label");
             ClearButton.UseVisualStyleBackColor = true;
             ClearButton.Click += ClearButton_Click;
             // 
@@ -233,5 +238,6 @@ namespace FormsExample
         private Label zipcodelabel;
         private TextBox Zipcodetextbox;
         private Label DisplayLabel;
+        private ToolTip toolTip;
     }
 }
