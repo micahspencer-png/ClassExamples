@@ -7,7 +7,20 @@ namespace FormsExample
             InitializeComponent();
         }
 
-        private void DisplayButton_Click(object sender, EventArgs e)
+        void DisplayContent() 
+        { 
+            if (EvaluateFields() != "")
+            {
+                MessageBox.Show(EvaluateFields());
+            }
+
+            else
+            {
+                DisplayLabel.Text = $"{FirstNametextbox.Text} {LastNametextbox.Text} \n{StreetAddresstextbox.Text} \n{Citytextbox.Text}, {Statetextbox.Text} {Zipcodetextbox.Text}";
+            }
+        }
+
+        string EvaluateFields() 
         {
             string message = "";
             
@@ -47,15 +60,12 @@ namespace FormsExample
                 message += "First Name is Required\n";
             }
 
-            if (message != "")
-            {
-                MessageBox.Show(message);
-            }
+            return message;
+        }
 
-            else
-            {
-                DisplayLabel.Text = $"{FirstNametextbox.Text} {LastNametextbox.Text} \n{StreetAddresstextbox.Text} \n{Citytextbox.Text}, {Statetextbox.Text} {Zipcodetextbox.Text}";
-            }
+        private void DisplayButton_Click(object sender, EventArgs e)
+        { 
+            DisplayContent(); 
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
