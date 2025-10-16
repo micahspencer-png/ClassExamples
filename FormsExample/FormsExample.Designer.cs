@@ -55,7 +55,7 @@ namespace FormsExample
             DisplayButton.Name = "DisplayButton";
             DisplayButton.Size = new Size(137, 66);
             DisplayButton.TabIndex = 0;
-            DisplayButton.Text = "Display Label";
+            DisplayButton.Text = "&Display Label";
             DisplayButton.UseVisualStyleBackColor = true;
             DisplayButton.Click += DisplayButton_Click;
             // 
@@ -65,7 +65,7 @@ namespace FormsExample
             ExitButton.Name = "ExitButton";
             ExitButton.Size = new Size(137, 66);
             ExitButton.TabIndex = 0;
-            ExitButton.Text = "Exit";
+            ExitButton.Text = "E&xit";
             ExitButton.UseVisualStyleBackColor = true;
             ExitButton.Click += ExitButton_Click;
             // 
@@ -75,7 +75,7 @@ namespace FormsExample
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(137, 66);
             ClearButton.TabIndex = 0;
-            ClearButton.Text = "Clear";
+            ClearButton.Text = "&Clear";
             ClearButton.UseVisualStyleBackColor = true;
             ClearButton.Click += ClearButton_Click;
             // 
