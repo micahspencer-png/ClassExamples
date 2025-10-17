@@ -60,6 +60,13 @@ namespace FormsExample
                 message += "First Name is Required\n";
             }
 
+            string[] messageArray;
+            messageArray = message.Split("\n");
+            message = "";
+            for (int i = messageArray.GetUpperBound(0); i >= 0; i--) 
+            {
+                message += messageArray[i] + "\n";
+            }
             return message;
         }
 
