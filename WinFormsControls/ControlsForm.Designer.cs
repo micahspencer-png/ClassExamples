@@ -134,6 +134,7 @@
             Exitbutton.TabIndex = 1;
             Exitbutton.Text = "Exit";
             Exitbutton.UseVisualStyleBackColor = true;
+            Exitbutton.Click += Exitbutton_Click;
             // 
             // Clearbutton
             // 
@@ -143,6 +144,7 @@
             Clearbutton.TabIndex = 0;
             Clearbutton.Text = "Clear";
             Clearbutton.UseVisualStyleBackColor = true;
+            Clearbutton.Click += Clearbutton_Click;
             // 
             // groupBox3
             // 
@@ -192,7 +194,7 @@
             // radioButton6
             // 
             radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(18, 275);
+            radioButton6.Location = new Point(12, 275);
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(117, 24);
             radioButton6.TabIndex = 0;
@@ -226,7 +228,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(819, 474);
             Controls.Add(radioButton8);
             Controls.Add(radioButton7);
             Controls.Add(radioButton6);
