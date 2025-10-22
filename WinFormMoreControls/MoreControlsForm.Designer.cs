@@ -34,16 +34,14 @@
             ExitButton = new Button();
             TopMenuStrip = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
-            submitToolStripMenuItem = new ToolStripMenuItem();
-            clearToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
+            SubmitTopMenuItem = new ToolStripMenuItem();
+            ClearTopMenuItem = new ToolStripMenuItem();
+            ExitTopMenuItem = new ToolStripMenuItem();
             ContextMenuStrip = new ContextMenuStrip(components);
             submitToolStripMenuItem1 = new ToolStripMenuItem();
             clearToolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
-            testsTheSubmitToolStripMenuItem = new ToolStripMenuItem();
-            testsTheClearToolStripMenuItem = new ToolStripMenuItem();
-            testsTheExitToolStripMenuItem = new ToolStripMenuItem();
+            DisplayListBox = new ListBox();
             TopMenuStrip.SuspendLayout();
             ContextMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -56,6 +54,7 @@
             DisplayButton.TabIndex = 0;
             DisplayButton.Text = "&Submit";
             DisplayButton.UseVisualStyleBackColor = true;
+            DisplayButton.Click += DisplayButton_Click;
             // 
             // ClearButton
             // 
@@ -65,6 +64,7 @@
             ClearButton.TabIndex = 0;
             ClearButton.Text = "&Clear";
             ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // ExitButton
             // 
@@ -74,6 +74,7 @@
             ExitButton.TabIndex = 0;
             ExitButton.Text = "E&xit";
             ExitButton.UseVisualStyleBackColor = true;
+            ExitButton.Click += ExitButton_Click;
             // 
             // TopMenuStrip
             // 
@@ -87,28 +88,31 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { submitToolStripMenuItem, clearToolStripMenuItem, exitToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { SubmitTopMenuItem, ClearTopMenuItem, ExitTopMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "&File";
             // 
-            // submitToolStripMenuItem
+            // SubmitTopMenuItem
             // 
-            submitToolStripMenuItem.Name = "submitToolStripMenuItem";
-            submitToolStripMenuItem.Size = new Size(224, 26);
-            submitToolStripMenuItem.Text = "&Submit";
+            SubmitTopMenuItem.Name = "SubmitTopMenuItem";
+            SubmitTopMenuItem.Size = new Size(224, 26);
+            SubmitTopMenuItem.Text = "&Submit";
+            SubmitTopMenuItem.Click += SubmitTopMenuItem_Click;
             // 
-            // clearToolStripMenuItem
+            // ClearTopMenuItem
             // 
-            clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            clearToolStripMenuItem.Size = new Size(224, 26);
-            clearToolStripMenuItem.Text = "&Clear";
+            ClearTopMenuItem.Name = "ClearTopMenuItem";
+            ClearTopMenuItem.Size = new Size(224, 26);
+            ClearTopMenuItem.Text = "&Clear";
+            ClearTopMenuItem.Click += ClearTopMenuItem_Click;
             // 
-            // exitToolStripMenuItem
+            // ExitTopMenuItem
             // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(224, 26);
-            exitToolStripMenuItem.Text = "E&xit";
+            ExitTopMenuItem.Name = "ExitTopMenuItem";
+            ExitTopMenuItem.Size = new Size(224, 26);
+            ExitTopMenuItem.Text = "E&xit";
+            ExitTopMenuItem.Click += ExitTopMenuItem_Click;
             // 
             // ContextMenuStrip
             // 
@@ -119,49 +123,39 @@
             // 
             // submitToolStripMenuItem1
             // 
-            submitToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { testsTheSubmitToolStripMenuItem });
             submitToolStripMenuItem1.Name = "submitToolStripMenuItem1";
             submitToolStripMenuItem1.Size = new Size(125, 24);
             submitToolStripMenuItem1.Text = "Submit";
             // 
             // clearToolStripMenuItem1
             // 
-            clearToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { testsTheClearToolStripMenuItem });
             clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
             clearToolStripMenuItem1.Size = new Size(125, 24);
             clearToolStripMenuItem1.Text = "Clear";
+            clearToolStripMenuItem1.Click += ClearButton_Click;
             // 
             // exitToolStripMenuItem1
             // 
-            exitToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { testsTheExitToolStripMenuItem });
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
             exitToolStripMenuItem1.Size = new Size(125, 24);
             exitToolStripMenuItem1.Text = "Exit";
+            exitToolStripMenuItem1.Click += ExitButton_Click;
             // 
-            // testsTheSubmitToolStripMenuItem
+            // DisplayListBox
             // 
-            testsTheSubmitToolStripMenuItem.Name = "testsTheSubmitToolStripMenuItem";
-            testsTheSubmitToolStripMenuItem.Size = new Size(224, 26);
-            testsTheSubmitToolStripMenuItem.Text = "Tests the submit";
-            // 
-            // testsTheClearToolStripMenuItem
-            // 
-            testsTheClearToolStripMenuItem.Name = "testsTheClearToolStripMenuItem";
-            testsTheClearToolStripMenuItem.Size = new Size(224, 26);
-            testsTheClearToolStripMenuItem.Text = "tests the clear";
-            // 
-            // testsTheExitToolStripMenuItem
-            // 
-            testsTheExitToolStripMenuItem.Name = "testsTheExitToolStripMenuItem";
-            testsTheExitToolStripMenuItem.Size = new Size(224, 26);
-            testsTheExitToolStripMenuItem.Text = "tests the exit";
+            DisplayListBox.ContextMenuStrip = ContextMenuStrip;
+            DisplayListBox.FormattingEnabled = true;
+            DisplayListBox.Location = new Point(12, 32);
+            DisplayListBox.Name = "DisplayListBox";
+            DisplayListBox.Size = new Size(891, 284);
+            DisplayListBox.TabIndex = 2;
             // 
             // MoreControlsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(915, 414);
-            ContextMenuStrip = ContextMenuStrip;
+            Controls.Add(DisplayListBox);
             Controls.Add(ExitButton);
             Controls.Add(ClearButton);
             Controls.Add(DisplayButton);
@@ -184,15 +178,13 @@
         private Button ExitButton;
         private MenuStrip TopMenuStrip;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem submitToolStripMenuItem;
-        private ToolStripMenuItem clearToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem SubmitTopMenuItem;
+        private ToolStripMenuItem ClearTopMenuItem;
+        private ToolStripMenuItem ExitTopMenuItem;
         private ContextMenuStrip ContextMenuStrip;
         private ToolStripMenuItem submitToolStripMenuItem1;
         private ToolStripMenuItem clearToolStripMenuItem1;
         private ToolStripMenuItem exitToolStripMenuItem1;
-        private ToolStripMenuItem testsTheSubmitToolStripMenuItem;
-        private ToolStripMenuItem testsTheClearToolStripMenuItem;
-        private ToolStripMenuItem testsTheExitToolStripMenuItem;
+        private ListBox DisplayListBox;
     }
 }
