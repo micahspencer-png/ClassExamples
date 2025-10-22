@@ -1,8 +1,8 @@
 namespace WinFormMoreControls
 {
-    public partial class Form1 : Form
+    public partial class MoreControlsForm : Form
     {
-        public Form1()
+        public MoreControlsForm()
         {
             InitializeComponent();
         }
