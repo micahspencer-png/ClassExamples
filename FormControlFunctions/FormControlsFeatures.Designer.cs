@@ -72,6 +72,7 @@
             PhoneTextBox.Name = "PhoneTextBox";
             PhoneTextBox.Size = new Size(283, 27);
             PhoneTextBox.TabIndex = 3;
+            PhoneTextBox.TextChanged += Text_Changed;
             // 
             // PhoneLabel
             // 
@@ -88,6 +89,7 @@
             AgeTextBox.Name = "AgeTextBox";
             AgeTextBox.Size = new Size(283, 27);
             AgeTextBox.TabIndex = 2;
+            AgeTextBox.TextChanged += Text_Changed;
             // 
             // AgeLabel
             // 
@@ -104,6 +106,8 @@
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(283, 27);
             NameTextBox.TabIndex = 1;
+            NameTextBox.TextChanged += Text_Changed;
+            
             // 
             // NameLabel
             // 
@@ -251,6 +255,8 @@
             groupBox4.ResumeLayout(false);
             ResumeLayout(false);
         }
+
+       
 
         #endregion
 

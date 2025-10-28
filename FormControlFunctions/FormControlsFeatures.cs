@@ -29,7 +29,37 @@ namespace FormControlFunctions
 
         bool ValidateInputFields() 
         {
-            return false;
+            bool allFieldsAreValid = false;
+            AgeTextBox.BackColor = Color.White;
+            NameTextBox.BackColor = Color.White;
+            PhoneTextBox.BackColor = Color.White;
+
+            //actual validation
+            if (NameTextBox.Text != "" && AgeTextBox.Text != "" && PhoneTextBox.Text != "") 
+            {
+                allFieldsAreValid = true;
+            }
+           
+                if (PhoneTextBox.Text == "")
+                {
+                PhoneTextBox.BackColor = Color.LightYellow;
+                allFieldsAreValid = false;
+                }
+            
+
+                if (AgeTextBox.Text == "")
+                {
+                    AgeTextBox.BackColor = Color.LightYellow;
+                    allFieldsAreValid = false;
+                }
+                
+                if (NameTextBox.Text == "") 
+                { 
+                    NameTextBox.BackColor = Color.LightYellow;
+                    allFieldsAreValid = false;
+                }
+                
+                return allFieldsAreValid;
         }
 
         void Submit() 
@@ -51,6 +81,11 @@ namespace FormControlFunctions
         private void submitButton_Click(object sender, EventArgs e)
         {
             Submit();
+        }
+        private void Text_Changed(object sender, EventArgs e) 
+        {
+            ValidateInputFields();
+            submitButton.Enabled = ValidateInputFields();
         }
     }
 }
