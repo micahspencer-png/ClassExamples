@@ -1,3 +1,5 @@
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace FormControlFunctions
 {
     public partial class FormControlsFeatures : Form
@@ -22,6 +24,7 @@ namespace FormControlFunctions
             checkBox1.Checked = false;
             checkBox2.Checked = false;
             //output
+            ResultsListBox.Items.Clear();
 
             //buttons
             submitButton.Enabled = ValidateInputFields();
@@ -33,6 +36,7 @@ namespace FormControlFunctions
             AgeTextBox.BackColor = Color.White;
             NameTextBox.BackColor = Color.White;
             PhoneTextBox.BackColor = Color.White;
+            int _age = 0;
 
             //actual validation
             if (NameTextBox.Text != "" && AgeTextBox.Text != "" && PhoneTextBox.Text != "") 
@@ -45,26 +49,60 @@ namespace FormControlFunctions
                 PhoneTextBox.BackColor = Color.LightYellow;
                 allFieldsAreValid = false;
                 }
-            
 
-                if (AgeTextBox.Text == "")
+
+            try
+            {
+                _age = int.Parse(AgeTextBox.Text);
+                if (_age <= 0 || _age >= 50)
                 {
-                    AgeTextBox.BackColor = Color.LightYellow;
                     allFieldsAreValid = false;
+                    AgeTextBox.BackColor = Color.LightYellow;
                 }
-                
-                if (NameTextBox.Text == "") 
-                { 
+            }
+            catch (Exception)
+            {
+                allFieldsAreValid = false;
+                AgeTextBox.BackColor = Color.LightYellow;
+
+                if (NameTextBox.Text == "")
+                {
                     NameTextBox.BackColor = Color.LightYellow;
                     allFieldsAreValid = false;
                 }
+            }
                 
                 return allFieldsAreValid;
         }
 
-        void Submit() 
+        string FormatName() 
         { 
-        
+            string _name = NameTextBox.Text;
+            if (UpperRadioButton.Checked == true) 
+            {
+                _name = _name.ToUpper();
+            }
+            else if (LowerRadioButton.Checked == true)
+            {
+                _name = _name.ToLower();
+            }
+            else if (ReverseRadioButton.Checked == true)
+            {
+                //_name = (string)_name.Reverse();
+                char[] chars = _name.ToCharArray();
+                _name = "";
+                for (int i = chars.GetUpperBound(0); i >= 0; i--)
+                {
+                    _name += chars[i];
+                }
+            }
+            
+            return _name;
+        }
+        void DisplayText() 
+        {
+            ResultsListBox.Items.Clear();
+            ResultsListBox.Items.Add(FormatName());
         }
 
         //Event Handlers------------------------------------------------------------------------------------------------
@@ -80,7 +118,7 @@ namespace FormControlFunctions
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            Submit();
+            DisplayText();
         }
         private void Text_Changed(object sender, EventArgs e) 
         {

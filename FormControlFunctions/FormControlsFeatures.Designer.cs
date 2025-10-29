@@ -46,7 +46,9 @@
             exitButton = new Button();
             clearButton = new Button();
             submitButton = new Button();
+            ResultsListBox = new ListBox();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             SuspendLayout();
@@ -107,7 +109,6 @@
             NameTextBox.Size = new Size(283, 27);
             NameTextBox.TabIndex = 1;
             NameTextBox.TextChanged += Text_Changed;
-            
             // 
             // NameLabel
             // 
@@ -120,6 +121,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(ResultsListBox);
             groupBox2.Location = new Point(496, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(486, 274);
@@ -236,6 +238,14 @@
             submitButton.UseVisualStyleBackColor = true;
             submitButton.Click += submitButton_Click;
             // 
+            // ResultsListBox
+            // 
+            ResultsListBox.FormattingEnabled = true;
+            ResultsListBox.Location = new Point(10, 29);
+            ResultsListBox.Name = "ResultsListBox";
+            ResultsListBox.Size = new Size(452, 224);
+            ResultsListBox.TabIndex = 0;
+            // 
             // FormControlsFeatures
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -250,13 +260,14 @@
             Text = "FormControlFeatures";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
-       
+
 
         #endregion
 
@@ -278,5 +289,6 @@
         private Button exitButton;
         private Button clearButton;
         private Button submitButton;
+        private ListBox ResultsListBox;
     }
 }
