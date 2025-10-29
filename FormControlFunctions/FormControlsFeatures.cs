@@ -54,7 +54,7 @@ namespace FormControlFunctions
             try
             {
                 _age = int.Parse(AgeTextBox.Text);
-                if (_age <= 0 || _age >= 50)
+                if (_age <= 0 || _age >= 100)
                 {
                     allFieldsAreValid = false;
                     AgeTextBox.BackColor = Color.LightYellow;
@@ -99,10 +99,18 @@ namespace FormControlFunctions
             
             return _name;
         }
+
+        int GetMaxHeartRate()
+        {
+            int maxHR = 0;
+            maxHR = 220 - int.Parse(AgeTextBox.Text);
+            return maxHR;
+        }
+       
         void DisplayText() 
         {
-            ResultsListBox.Items.Clear();
             ResultsListBox.Items.Add(FormatName());
+            ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
         }
 
         //Event Handlers------------------------------------------------------------------------------------------------
