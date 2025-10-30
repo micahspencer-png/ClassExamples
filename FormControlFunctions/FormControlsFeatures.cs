@@ -21,8 +21,8 @@ namespace FormControlFunctions
             NameTextBox.Focus();
             //options
             UpperRadioButton.Checked = true;
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
+            FormatCheckBox.Checked = false;
+            EmailCheckBox.Checked = false;
             //output
             ResultsListBox.Items.Clear();
 
@@ -96,8 +96,14 @@ namespace FormControlFunctions
                     _name += chars[i];
                 }
             }
-            
-            return _name;
+            if (FormatCheckBox.Checked == true) 
+            { 
+               return _name; 
+            }
+            else 
+            { 
+                return NameTextBox.Text;
+            }    
         }
 
         int GetMaxHeartRate()
@@ -111,6 +117,19 @@ namespace FormControlFunctions
         {
             ResultsListBox.Items.Add(FormatName());
             ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
+            if (EmailCheckBox.Checked == true) 
+            {
+                ResultsListBox.Items.Add(CreateEmail());
+            }
+        }
+
+        string CreateEmail() 
+        {
+            string _email = "";
+            _email = FormatName();
+            _email = _email.Replace(" ", ".");
+            _email = $"{_email}@acme.com";
+            return _email;
         }
 
         //Event Handlers------------------------------------------------------------------------------------------------

@@ -36,9 +36,10 @@
             NameTextBox = new TextBox();
             NameLabel = new Label();
             groupBox2 = new GroupBox();
+            ResultsListBox = new ListBox();
             groupBox3 = new GroupBox();
-            checkBox2 = new CheckBox();
-            checkBox1 = new CheckBox();
+            EmailCheckBox = new CheckBox();
+            FormatCheckBox = new CheckBox();
             ReverseRadioButton = new RadioButton();
             LowerRadioButton = new RadioButton();
             UpperRadioButton = new RadioButton();
@@ -46,7 +47,6 @@
             exitButton = new Button();
             clearButton = new Button();
             submitButton = new Button();
-            ResultsListBox = new ListBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -129,10 +129,18 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Results";
             // 
+            // ResultsListBox
+            // 
+            ResultsListBox.FormattingEnabled = true;
+            ResultsListBox.Location = new Point(10, 29);
+            ResultsListBox.Name = "ResultsListBox";
+            ResultsListBox.Size = new Size(452, 224);
+            ResultsListBox.TabIndex = 0;
+            // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(checkBox2);
-            groupBox3.Controls.Add(checkBox1);
+            groupBox3.Controls.Add(EmailCheckBox);
+            groupBox3.Controls.Add(FormatCheckBox);
             groupBox3.Controls.Add(ReverseRadioButton);
             groupBox3.Controls.Add(LowerRadioButton);
             groupBox3.Controls.Add(UpperRadioButton);
@@ -143,25 +151,25 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Options";
             // 
-            // checkBox2
+            // EmailCheckBox
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(290, 95);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(101, 24);
-            checkBox2.TabIndex = 4;
-            checkBox2.Text = "checkBox2";
-            checkBox2.UseVisualStyleBackColor = true;
+            EmailCheckBox.AutoSize = true;
+            EmailCheckBox.Location = new Point(290, 95);
+            EmailCheckBox.Name = "EmailCheckBox";
+            EmailCheckBox.Size = new Size(115, 24);
+            EmailCheckBox.TabIndex = 4;
+            EmailCheckBox.Text = "Create Email";
+            EmailCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // FormatCheckBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(290, 65);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 24);
-            checkBox1.TabIndex = 3;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
+            FormatCheckBox.AutoSize = true;
+            FormatCheckBox.Location = new Point(290, 65);
+            FormatCheckBox.Name = "FormatCheckBox";
+            FormatCheckBox.Size = new Size(121, 24);
+            FormatCheckBox.TabIndex = 3;
+            FormatCheckBox.Text = "Apply Format";
+            FormatCheckBox.UseVisualStyleBackColor = true;
             // 
             // ReverseRadioButton
             // 
@@ -238,14 +246,6 @@
             submitButton.UseVisualStyleBackColor = true;
             submitButton.Click += submitButton_Click;
             // 
-            // ResultsListBox
-            // 
-            ResultsListBox.FormattingEnabled = true;
-            ResultsListBox.Location = new Point(10, 29);
-            ResultsListBox.Name = "ResultsListBox";
-            ResultsListBox.Size = new Size(452, 224);
-            ResultsListBox.TabIndex = 0;
-            // 
             // FormControlsFeatures
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -281,8 +281,8 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
-        private CheckBox checkBox2;
-        private CheckBox checkBox1;
+        private CheckBox EmailCheckBox;
+        private CheckBox FormatCheckBox;
         private RadioButton ReverseRadioButton;
         private RadioButton LowerRadioButton;
         private RadioButton UpperRadioButton;
