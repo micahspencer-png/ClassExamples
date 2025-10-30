@@ -2,6 +2,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FormControlFunctions
 {
+    /*TODO
+        [] save client info in a data structure
+        [] use list box to display a single client record
+        [] use combobox to select the right client
+        [] when selected, populate text fields and listbox with client details
+        [] submit will update client record or create it if nonexistant
+        [] may need a unique id number for each client
+        [] save and restore clients using a file
+        [] file dialogue controls
+     */
     public partial class FormControlsFeatures : Form
     {
         public FormControlsFeatures()
