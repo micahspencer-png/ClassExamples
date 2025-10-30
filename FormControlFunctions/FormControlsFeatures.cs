@@ -25,6 +25,7 @@ namespace FormControlFunctions
             EmailCheckBox.Checked = false;
             //output
             ResultsListBox.Items.Clear();
+            ClientComboBox.Items.Clear();
 
             //buttons
             submitButton.Enabled = ValidateInputFields();
@@ -115,12 +116,14 @@ namespace FormControlFunctions
        
         void DisplayText() 
         {
+            ClientComboBox.Items.Add(FormatName());
             ResultsListBox.Items.Add(FormatName());
             ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
             if (EmailCheckBox.Checked == true) 
             {
                 ResultsListBox.Items.Add(CreateEmail());
             }
+
         }
 
         string CreateEmail() 
