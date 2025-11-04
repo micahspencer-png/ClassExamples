@@ -3,10 +3,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace FormControlFunctions
 {
     /*TODO
-        [] save client info in a data structure
-        [] use list box to display a single client record
-        [] use combobox to select the right client
-        [] when selected, populate text fields and listbox with client details
+        [x] save client info in a data structure
+        [x] use list box to display a single client record
+        [x] use combobox to select the right client
+        [x] when selected, populate text fields and listbox with client details
         [] submit will update client record or create it if nonexistant
         [] may need a unique id number for each client
         [] save and restore clients using a file
@@ -25,6 +25,10 @@ namespace FormControlFunctions
 
         void SetDefaults()
         {
+            if (ClientComboBox.Items.Count > 0) 
+            { 
+                ClientComboBox.SelectedIndex = 0;
+            }
             //info fields
             NameTextBox.Text = "";
             AgeTextBox.Text = "";
@@ -127,6 +131,7 @@ namespace FormControlFunctions
 
         void DisplayText()
         {
+            ResultsListBox.Items.Clear();
             ClientComboBox.Items.Add(FormatName());
             ResultsListBox.Items.Add(FormatName());
             ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
@@ -148,7 +153,11 @@ namespace FormControlFunctions
 
         void UpdateClientData()
         {
-            this.clientData.Add($"{NameTextBox.Text}$${AgeTextBox.Text}$${PhoneTextBox.Text}");
+            string currentRecord = $"{NameTextBox.Text}$${AgeTextBox.Text}$${PhoneTextBox.Text}";
+            if (!this.clientData.Contains(currentRecord))
+            {
+                this.clientData.Add(currentRecord);
+            }
             UpdateClientComboBox();
         }
 
@@ -188,9 +197,16 @@ namespace FormControlFunctions
         private void ClientComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Text = ClientComboBox.SelectedIndex.ToString();
+            string[] temp;
 
-            ResultsListBox.Items.Clear();
-            ResultsListBox.Items.Add(ClientComboBox.SelectedIndex);
+            temp = this.clientData[ClientComboBox.SelectedIndex].Split("$$");
+            temp[0] = NameTextBox.Text;
+            temp[1] = AgeTextBox.Text;
+            temp[2] = PhoneTextBox.Text;
+
+            DisplayText();
+            
+
         }
     }
 }
