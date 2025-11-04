@@ -14,6 +14,7 @@ namespace FormControlFunctions
      */
     public partial class FormControlsFeatures : Form
     {
+        List<string> clientData = new();
         public FormControlsFeatures()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace FormControlFunctions
             submitButton.Enabled = ValidateInputFields();
         }
 
-        bool ValidateInputFields() 
+        bool ValidateInputFields()
         {
             bool allFieldsAreValid = false;
             AgeTextBox.BackColor = Color.White;
@@ -50,16 +51,16 @@ namespace FormControlFunctions
             int _age = 0;
 
             //actual validation
-            if (NameTextBox.Text != "" && AgeTextBox.Text != "" && PhoneTextBox.Text != "") 
+            if (NameTextBox.Text != "" && AgeTextBox.Text != "" && PhoneTextBox.Text != "")
             {
                 allFieldsAreValid = true;
             }
-           
-                if (PhoneTextBox.Text == "")
-                {
+
+            if (PhoneTextBox.Text == "")
+            {
                 PhoneTextBox.BackColor = Color.LightYellow;
                 allFieldsAreValid = false;
-                }
+            }
 
 
             try
@@ -82,14 +83,14 @@ namespace FormControlFunctions
                     allFieldsAreValid = false;
                 }
             }
-                
-                return allFieldsAreValid;
+
+            return allFieldsAreValid;
         }
 
-        string FormatName() 
-        { 
+        string FormatName()
+        {
             string _name = NameTextBox.Text;
-            if (UpperRadioButton.Checked == true) 
+            if (UpperRadioButton.Checked == true)
             {
                 _name = _name.ToUpper();
             }
@@ -107,14 +108,14 @@ namespace FormControlFunctions
                     _name += chars[i];
                 }
             }
-            if (FormatCheckBox.Checked == true) 
-            { 
-               return _name; 
+            if (FormatCheckBox.Checked == true)
+            {
+                return _name;
             }
-            else 
-            { 
+            else
+            {
                 return NameTextBox.Text;
-            }    
+            }
         }
 
         int GetMaxHeartRate()
@@ -123,26 +124,44 @@ namespace FormControlFunctions
             maxHR = 220 - int.Parse(AgeTextBox.Text);
             return maxHR;
         }
-       
-        void DisplayText() 
+
+        void DisplayText()
         {
             ClientComboBox.Items.Add(FormatName());
             ResultsListBox.Items.Add(FormatName());
             ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
-            if (EmailCheckBox.Checked == true) 
+            if (EmailCheckBox.Checked == true)
             {
                 ResultsListBox.Items.Add(CreateEmail());
             }
 
         }
 
-        string CreateEmail() 
+        string CreateEmail()
         {
             string _email = "";
             _email = FormatName();
             _email = _email.Replace(" ", ".");
             _email = $"{_email}@acme.com";
             return _email;
+        }
+
+        void UpdateClientData()
+        {
+            this.clientData.Add($"{NameTextBox.Text}$${AgeTextBox.Text}$${PhoneTextBox.Text}");
+            UpdateClientComboBox();
+        }
+
+        void UpdateClientComboBox()
+        {
+
+            string[] temp;
+            ClientComboBox.Items.Clear();
+            foreach (string thing in this.clientData)
+            {
+                temp = thing.Split("$$");
+                ClientComboBox.Items.Add(temp[0]);
+            }
         }
 
         //Event Handlers------------------------------------------------------------------------------------------------
@@ -158,12 +177,20 @@ namespace FormControlFunctions
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            DisplayText();
+            UpdateClientData();
         }
-        private void Text_Changed(object sender, EventArgs e) 
+        private void Text_Changed(object sender, EventArgs e)
         {
             ValidateInputFields();
             submitButton.Enabled = ValidateInputFields();
+        }
+
+        private void ClientComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Text = ClientComboBox.SelectedIndex.ToString();
+
+            ResultsListBox.Items.Clear();
+            ResultsListBox.Items.Add(ClientComboBox.SelectedIndex);
         }
     }
 }
