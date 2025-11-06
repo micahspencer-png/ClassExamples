@@ -48,6 +48,7 @@
             exitButton = new Button();
             clearButton = new Button();
             submitButton = new Button();
+            openFileDialog1 = new OpenFileDialog();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -257,6 +258,10 @@
             submitButton.UseVisualStyleBackColor = true;
             submitButton.Click += submitButton_Click;
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FormControlsFeatures
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -302,5 +307,6 @@
         private Button submitButton;
         private ListBox ResultsListBox;
         private ComboBox ClientComboBox;
+        private OpenFileDialog openFileDialog1;
     }
 }

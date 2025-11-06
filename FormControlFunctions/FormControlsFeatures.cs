@@ -1,3 +1,4 @@
+using System.Diagnostics.Eventing.Reader;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FormControlFunctions
@@ -18,6 +19,8 @@ namespace FormControlFunctions
         public FormControlsFeatures()
         {
             InitializeComponent();
+
+            clientData.Add("$$$$");
             SetDefaults();
         }
 
@@ -25,6 +28,7 @@ namespace FormControlFunctions
 
         void SetDefaults()
         {
+            UpdateClientComboBox();
             if (ClientComboBox.Items.Count > 0) 
             { 
                 ClientComboBox.SelectedIndex = 0;
@@ -48,18 +52,14 @@ namespace FormControlFunctions
 
         bool ValidateInputFields()
         {
-            bool allFieldsAreValid = false;
+            bool allFieldsAreValid = true;
             AgeTextBox.BackColor = Color.White;
             NameTextBox.BackColor = Color.White;
             PhoneTextBox.BackColor = Color.White;
             int _age = 0;
 
             //actual validation
-            if (NameTextBox.Text != "" && AgeTextBox.Text != "" && PhoneTextBox.Text != "")
-            {
-                allFieldsAreValid = true;
-            }
-
+            
             if (PhoneTextBox.Text == "")
             {
                 PhoneTextBox.BackColor = Color.LightYellow;
@@ -131,15 +131,17 @@ namespace FormControlFunctions
 
         void DisplayText()
         {
-            ResultsListBox.Items.Clear();
-            ClientComboBox.Items.Add(FormatName());
-            ResultsListBox.Items.Add(FormatName());
-            ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
-            if (EmailCheckBox.Checked == true)
+            if (ValidateInputFields())
             {
-                ResultsListBox.Items.Add(CreateEmail());
+                ResultsListBox.Items.Clear();
+                ClientComboBox.Items.Add(FormatName());
+                ResultsListBox.Items.Add(FormatName());
+                ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
+                if (EmailCheckBox.Checked == true)
+                {
+                    ResultsListBox.Items.Add(CreateEmail());
+                }
             }
-
         }
 
         string CreateEmail()
@@ -156,8 +158,17 @@ namespace FormControlFunctions
             string currentRecord = $"{NameTextBox.Text}$${AgeTextBox.Text}$${PhoneTextBox.Text}";
             if (!this.clientData.Contains(currentRecord))
             {
-                this.clientData.Add(currentRecord);
+                if (ClientComboBox.SelectedIndex >= 1)
+                {
+                    this.clientData.RemoveAt(ClientComboBox.SelectedIndex);
+                    this.clientData.Insert(ClientComboBox.SelectedIndex, currentRecord);
+                }
+                else
+                {
+                    this.clientData.Add(currentRecord);
+                }
             }
+            DisplayText();
             UpdateClientComboBox();
         }
 
@@ -166,10 +177,21 @@ namespace FormControlFunctions
 
             string[] temp;
             ClientComboBox.Items.Clear();
+
+            
+            //make combobox content match content of client data list
+            //add names only
             foreach (string thing in this.clientData)
             {
                 temp = thing.Split("$$");
-                ClientComboBox.Items.Add(temp[0]);
+                if (temp[0] == "")
+                {
+                    ClientComboBox.Items.Add("New");
+                }
+                else
+                {
+                    ClientComboBox.Items.Add(temp[0]);
+                }
             }
         }
 
@@ -196,15 +218,19 @@ namespace FormControlFunctions
 
         private void ClientComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Text = ClientComboBox.SelectedIndex.ToString();
             string[] temp;
+            this.Text = ClientComboBox.SelectedIndex.ToString();
 
+            
             temp = this.clientData[ClientComboBox.SelectedIndex].Split("$$");
             temp[0] = NameTextBox.Text;
             temp[1] = AgeTextBox.Text;
             temp[2] = PhoneTextBox.Text;
-
-            DisplayText();
+            ResultsListBox.Items.Clear();
+            if (ValidateInputFields())
+            {
+                DisplayText();
+            }
             
 
         }
