@@ -48,11 +48,16 @@
             exitButton = new Button();
             clearButton = new Button();
             submitButton = new Button();
-            openFileDialog1 = new OpenFileDialog();
+            OpenFileDialog1 = new OpenFileDialog();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            OpenTopStripMenuItem = new ToolStripMenuItem();
+            SaveToplStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -63,7 +68,7 @@
             groupBox1.Controls.Add(AgeLabel);
             groupBox1.Controls.Add(NameTextBox);
             groupBox1.Controls.Add(NameLabel);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(12, 49);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(478, 274);
             groupBox1.TabIndex = 0;
@@ -125,7 +130,7 @@
             // 
             groupBox2.Controls.Add(ClientComboBox);
             groupBox2.Controls.Add(ResultsListBox);
-            groupBox2.Location = new Point(496, 12);
+            groupBox2.Location = new Point(496, 49);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(486, 274);
             groupBox2.TabIndex = 3;
@@ -135,18 +140,18 @@
             // ClientComboBox
             // 
             ClientComboBox.FormattingEnabled = true;
-            ClientComboBox.Location = new Point(168, 26);
+            ClientComboBox.Location = new Point(240, 65);
             ClientComboBox.Name = "ClientComboBox";
-            ClientComboBox.Size = new Size(294, 28);
+            ClientComboBox.Size = new Size(222, 28);
             ClientComboBox.TabIndex = 1;
             ClientComboBox.SelectedIndexChanged += ClientComboBox_SelectedIndexChanged;
             // 
             // ResultsListBox
             // 
             ResultsListBox.FormattingEnabled = true;
-            ResultsListBox.Location = new Point(10, 69);
+            ResultsListBox.Location = new Point(25, 103);
             ResultsListBox.Name = "ResultsListBox";
-            ResultsListBox.Size = new Size(452, 184);
+            ResultsListBox.Size = new Size(437, 144);
             ResultsListBox.TabIndex = 0;
             // 
             // groupBox3
@@ -156,9 +161,9 @@
             groupBox3.Controls.Add(ReverseRadioButton);
             groupBox3.Controls.Add(LowerRadioButton);
             groupBox3.Controls.Add(UpperRadioButton);
-            groupBox3.Location = new Point(6, 292);
+            groupBox3.Location = new Point(6, 318);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(484, 258);
+            groupBox3.Size = new Size(484, 232);
             groupBox3.TabIndex = 1;
             groupBox3.TabStop = false;
             groupBox3.Text = "Options";
@@ -221,9 +226,9 @@
             groupBox4.Controls.Add(exitButton);
             groupBox4.Controls.Add(clearButton);
             groupBox4.Controls.Add(submitButton);
-            groupBox4.Location = new Point(496, 292);
+            groupBox4.Location = new Point(496, 318);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(477, 258);
+            groupBox4.Size = new Size(477, 232);
             groupBox4.TabIndex = 2;
             groupBox4.TabStop = false;
             groupBox4.Text = "Controls";
@@ -258,9 +263,40 @@
             submitButton.UseVisualStyleBackColor = true;
             submitButton.Click += submitButton_Click;
             // 
-            // openFileDialog1
+            // OpenFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            OpenFileDialog1.FileName = "openFileDialog1";
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(985, 31);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { OpenTopStripMenuItem, SaveToplStripMenuItem });
+            fileToolStripMenuItem.Font = new Font("Segoe UI", 10F);
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(49, 27);
+            fileToolStripMenuItem.Text = "&File";
+            // 
+            // OpenTopStripMenuItem
+            // 
+            OpenTopStripMenuItem.Name = "OpenTopStripMenuItem";
+            OpenTopStripMenuItem.Size = new Size(224, 28);
+            OpenTopStripMenuItem.Text = "&Open";
+            OpenTopStripMenuItem.Click += OpenTopStripMenuItem_Click;
+            // 
+            // SaveToplStripMenuItem
+            // 
+            SaveToplStripMenuItem.Name = "SaveToplStripMenuItem";
+            SaveToplStripMenuItem.Size = new Size(224, 28);
+            SaveToplStripMenuItem.Text = "&Save";
             // 
             // FormControlsFeatures
             // 
@@ -271,6 +307,8 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "FormControlsFeatures";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormControlFeatures";
@@ -280,7 +318,10 @@
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
 
@@ -307,6 +348,10 @@
         private Button submitButton;
         private ListBox ResultsListBox;
         private ComboBox ClientComboBox;
-        private OpenFileDialog openFileDialog1;
+        private OpenFileDialog OpenFileDialog1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem OpenTopStripMenuItem;
+        private ToolStripMenuItem SaveToplStripMenuItem;
     }
 }

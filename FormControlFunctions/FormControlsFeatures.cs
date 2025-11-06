@@ -16,6 +16,7 @@ namespace FormControlFunctions
     public partial class FormControlsFeatures : Form
     {
         List<string> clientData = new();
+        string currentDBFilePath = "";
         public FormControlsFeatures()
         {
             InitializeComponent();
@@ -29,8 +30,8 @@ namespace FormControlFunctions
         void SetDefaults()
         {
             UpdateClientComboBox();
-            if (ClientComboBox.Items.Count > 0) 
-            { 
+            if (ClientComboBox.Items.Count > 0)
+            {
                 ClientComboBox.SelectedIndex = 0;
             }
             //info fields
@@ -59,7 +60,7 @@ namespace FormControlFunctions
             int _age = 0;
 
             //actual validation
-            
+
             if (PhoneTextBox.Text == "")
             {
                 PhoneTextBox.BackColor = Color.LightYellow;
@@ -178,7 +179,7 @@ namespace FormControlFunctions
             string[] temp;
             ClientComboBox.Items.Clear();
 
-            
+
             //make combobox content match content of client data list
             //add names only
             foreach (string thing in this.clientData)
@@ -191,6 +192,29 @@ namespace FormControlFunctions
                 else
                 {
                     ClientComboBox.Items.Add(temp[0]);
+                }
+            }
+        }
+
+        void OpenClientDBFile(string FilePath) 
+        {
+            using (StreamReader testFile = new StreamReader(FilePath))
+            {
+                do
+                {
+
+                } while (testFile.EndOfStream == false);
+                this.currentDBFilePath = FilePath;
+            }
+        }
+
+        void UpdateClientDBFile() 
+        {
+            using (StreamWriter dbFile = File.CreateText(this.currentDBFilePath))
+            {
+                foreach (string thing in this.clientData)
+                {
+                    dbFile.WriteLine(thing);
                 }
             }
         }
@@ -219,20 +243,34 @@ namespace FormControlFunctions
         private void ClientComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] temp;
-            this.Text = ClientComboBox.SelectedIndex.ToString();
-
             
-            temp = this.clientData[ClientComboBox.SelectedIndex].Split("$$");
-            temp[0] = NameTextBox.Text;
-            temp[1] = AgeTextBox.Text;
-            temp[2] = PhoneTextBox.Text;
+
             ResultsListBox.Items.Clear();
-            if (ValidateInputFields())
-            {
-                DisplayText();
-            }
+            temp = this.clientData[ClientComboBox.SelectedIndex].Split("$$");
+            NameTextBox.Text = temp[0];
+            AgeTextBox.Text = temp[1];
+            PhoneTextBox.Text = temp[2];
             
+            DisplayText();
+            
+        }
 
+        private void OpenTopStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult choice = DialogResult.Cancel;
+            OpenFileDialog1.InitialDirectory = Application.StartupPath;
+            OpenFileDialog1.FileName = "";
+            OpenFileDialog1.Filter = "Client Data(*.cdb)|*.cdb|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            OpenFileDialog1.ShowDialog();
+
+            if (choice == DialogResult.OK) 
+            {
+                OpenClientDBFile(OpenFileDialog1.FileName);
+            }
+            else 
+            {
+                MessageBox.Show("Cancel");
+            }
         }
     }
 }
