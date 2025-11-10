@@ -21,7 +21,12 @@ namespace FormControlFunctions
         {
             InitializeComponent();
 
-            clientData.Add("$$$$");
+            //SelectDBFile();
+            if (clientData.Count == 0)
+            {
+                clientData.Add("$$$$");
+            }
+           
             SetDefaults();
         }
 
@@ -135,7 +140,6 @@ namespace FormControlFunctions
             if (ValidateInputFields())
             {
                 ResultsListBox.Items.Clear();
-                ClientComboBox.Items.Add(FormatName());
                 ResultsListBox.Items.Add(FormatName());
                 ResultsListBox.Items.Add($"Max Heart Rate: {GetMaxHeartRate()}bpm");
                 if (EmailCheckBox.Checked == true)
@@ -169,8 +173,9 @@ namespace FormControlFunctions
                     this.clientData.Add(currentRecord);
                 }
             }
-            DisplayText();
+            
             UpdateClientComboBox();
+            //UpdateClientDBFile();
         }
 
         void UpdateClientComboBox()
@@ -194,17 +199,43 @@ namespace FormControlFunctions
                     ClientComboBox.Items.Add(temp[0]);
                 }
             }
+            ClientComboBox.SelectedIndex = 0;
+            DisplayText();
+        }
+
+        void SelectDBFile() 
+        {
+            DialogResult choice = DialogResult.Cancel;
+            OpenFileDialog1.InitialDirectory = Application.StartupPath;
+            OpenFileDialog1.FileName = "";
+            OpenFileDialog1.Filter = "Client Data(*.cdb)|*.cdb|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            choice = OpenFileDialog1.ShowDialog();
+
+            if (choice == DialogResult.OK)
+            {
+                this.currentDBFilePath = OpenFileDialog1.FileName;
+                OpenClientDBFile(OpenFileDialog1.FileName);
+                
+            }
+            else
+            {
+                MessageBox.Show("Cancel");
+            }
         }
 
         void OpenClientDBFile(string FilePath) 
         {
             using (StreamReader testFile = new StreamReader(FilePath))
             {
+                this.clientData.Clear();
                 do
                 {
+                    //Console.WriteLine(testFile.ReadLine());
+                    //this.clientData.Add(testFile.ReadLine);
 
                 } while (testFile.EndOfStream == false);
                 this.currentDBFilePath = FilePath;
+                MessageBox.Show(FilePath);
             }
         }
 
@@ -237,7 +268,7 @@ namespace FormControlFunctions
         private void Text_Changed(object sender, EventArgs e)
         {
             ValidateInputFields();
-            submitButton.Enabled = ValidateInputFields();
+            submitButton.Enabled = true;
         }
 
         private void ClientComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -257,20 +288,7 @@ namespace FormControlFunctions
 
         private void OpenTopStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult choice = DialogResult.Cancel;
-            OpenFileDialog1.InitialDirectory = Application.StartupPath;
-            OpenFileDialog1.FileName = "";
-            OpenFileDialog1.Filter = "Client Data(*.cdb)|*.cdb|txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            OpenFileDialog1.ShowDialog();
-
-            if (choice == DialogResult.OK) 
-            {
-                OpenClientDBFile(OpenFileDialog1.FileName);
-            }
-            else 
-            {
-                MessageBox.Show("Cancel");
-            }
+            SelectDBFile();
         }
     }
 }
