@@ -25,6 +25,7 @@ namespace FormControlFunctions
             if (clientData.Count == 0)
             {
                 clientData.Add("$$$$");
+                this.currentDBFilePath = $"..\\..\\..\\ClientDB.cdb";
             }
            
             SetDefaults();
@@ -175,7 +176,7 @@ namespace FormControlFunctions
             }
             
             UpdateClientComboBox();
-            //UpdateClientDBFile();
+            UpdateClientDBFile();
         }
 
         void UpdateClientComboBox()
@@ -219,7 +220,7 @@ namespace FormControlFunctions
             }
             else
             {
-                MessageBox.Show("Cancel");
+                //MessageBox.Show("Cancel");
             }
         }
 
@@ -231,11 +232,11 @@ namespace FormControlFunctions
                 do
                 {
                     //Console.WriteLine(testFile.ReadLine());
-                    //this.clientData.Add(testFile.ReadLine);
+                    this.clientData.Add(testFile.ReadLine());
 
                 } while (testFile.EndOfStream == false);
-                this.currentDBFilePath = FilePath;
-                MessageBox.Show(FilePath);
+                //this.currentDBFilePath = FilePath;
+                //MessageBox.Show(FilePath);
             }
         }
 
